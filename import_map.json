@@ -1,0 +1,7 @@
+{
+  "imports": {
+    "react": "npm:react@17",
+    "ink": "npm:ink",
+    "cli-spinners": "npm:cli-spinners"
+  }
+}
