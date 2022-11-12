@@ -1,0 +1,47 @@
+---
+name: Release
+
+concurrency:
+    group: ${{ github.workflow }}-${{ github.ref }}
+    cancel-in-progress: true
+
+"on":
+    push:
+        branches:
+            - main
+    pull_request:
+        types:
+            - "labeled"
+            - "synchronize"
+
+jobs:
+    release:
+        runs-on: ubuntu-latest
+
+        if: "!contains(github.event.head_commit.message, 'ci skip') && !contains(github.event.head_commit.message, 'skip ci')"
+
+        steps:
+            - uses: wow-actions/use-app-token@v1
+              id: generate_token
+              with:
+                  app_id: ${{ secrets.ACTIONBOT_APPID }}
+                  private_key: ${{ secrets.ACTIONBOT_PRIVATEKEY }}
+
+            - uses: actions/checkout@v3
+              with:
+                  fetch-depth: 0
+
+            - uses: ./.github/actions/setup-asdf
+              with:
+                  SetupCommand: "./setup.bash"
+
+            - uses: ./.github/actions/setup-deno
+
+            - name: Create Release
+              env:
+                  GIT_AUTHOR_EMAIL: airtonix@users.noreply.github.com
+                  GIT_COMMITTER_EMAIL: airtonix@users.noreply.github.com
+                  GIT_AUTHOR_NAME: releasebot
+                  GIT_COMMITTER_NAME: releasebot
+                  GITHUB_TOKEN: ${{ steps.generate_token.outputs.token }}
+              run: just release

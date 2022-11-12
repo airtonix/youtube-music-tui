@@ -1,0 +1,34 @@
+---
+name: "build-test"
+# rebuild any PRs and main branch changes
+"on":
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+      - "release/*"
+
+jobs:
+  # make sure build/ci work properly
+  Check:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+
+      - uses: ./.github/actions/setup-asdf
+        with:
+          SetupCommand: "./setup.bash"
+
+      - uses: ./.github/actions/setup-deno
+
+      - run: just lint
+
+      - run: just check format
+
+      - run: just check types
+
+      - run: just build
+
+      - run: just test

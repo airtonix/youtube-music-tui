@@ -1,0 +1,56 @@
+---
+name: Install Dependencies with Deno
+
+description: installs or restores dependencies from/to cache
+
+inputs:
+    Entrypoint:
+        description: Deno entrypoint from which to discover deps
+        required: true
+    DenoArgs:
+        description: Extra args for deno cache or status command
+        required: false
+    StrickLockfile:
+        description: name of the lockfile that should be enforced
+        required: false
+        default: ""
+
+runs:
+    using: "composite"
+
+    steps:
+        - uses: actions/cache@v3
+          id: deno-cache
+          with:
+              path: |
+                  /home/runner/.deno
+                  /home/runner/.cache/deno
+              key: ${{ runner.os }}-deno-${{ hashFiles('**/*') }}
+              restore-keys: |
+                  ${{ runner.os }}-deno-
+
+        - name: Install Dependencies
+          if: deno-cache.outputs.cache-hit != 'true'
+          shell: bash
+          env:
+              HUSKY_SKIP_INSTALL: "1"
+              HUSKY: "0"
+          run: |
+              deno cache ${{inputs.DenoArgs}} ${{inputs.Entrypoint}}
+
+        - name: Cache Status
+          shell: bash
+          run: |
+              deno info ${{inputs.DenoArgs}} ${{inputs.Entrypoint}}
+
+        - name: check lock file
+          continue-on-error: true
+          if: inputs.StrictLockfile
+          env:
+              DENO_LOCKFILE: ${{inputs.StrictLockfile}}
+          run: |
+              if [[ -f $DENO_LOCKFILE ]]; then
+                deno cache --lock=$DENO_LOCKFILE --cached-only ./mod.ts
+              fi
+              deno cache --lock-write --lock=$DENO_LOCKFILE ./mod.ts
+              cat $DENO_LOCKFILE
