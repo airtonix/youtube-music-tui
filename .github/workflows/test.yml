@@ -22,6 +22,9 @@ jobs:
           SetupCommand: "./setup.bash"
 
       - uses: ./.github/actions/setup-deno
+        with:
+          Entrypoint: ./src/index.ts
+          DenoArgs: --unstable
 
       - run: just lint
 

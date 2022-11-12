@@ -27,7 +27,11 @@ jobs:
     environment:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
+
     runs-on: ubuntu-latest
+
+    if: false # disabled for now
+
     steps:
       - name: Checkout
         uses: actions/checkout@v3
@@ -40,6 +44,9 @@ jobs:
           SetupCommand: "./setup.bash"
 
       - uses: ./.github/actions/setup-deno
+        with:
+          Entrypoint: ./src/index.ts
+          DenoArgs: --unstable
 
       - run: just website
 
