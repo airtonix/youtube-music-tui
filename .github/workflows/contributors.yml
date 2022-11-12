@@ -1,0 +1,57 @@
+---
+name: Contributors
+"on":
+  schedule:
+    # At 01:00 on Sunday.
+    - cron: "0 1 * * 0"
+  push:
+    branches:
+      - master
+jobs:
+  contributors:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: wow-actions/use-app-token@v1
+        id: generate_token
+        with:
+          app_id: ${{ secrets.ACTIONBOT_APPID }}
+          private_key: ${{ secrets.ACTIONBOT_PRIVATEKEY }}
+
+      - uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
+
+      - uses: wow-actions/update-contributors@v1
+        with:
+          include_bots: false
+          GITHUB_TOKEN: ${{ steps.generate_token.outputs.token }}
+
+      - uses: wow-actions/contributors-list@v1
+        with:
+          GITHUB_TOKEN: ${{ steps.generate_token.outputs.token }}
+          userNameHeight: 19
+          includeBots: false
+          itemTemplate: >
+            <a
+              id="{{{ name }}}"
+              title="{{{ name }}}"
+              xlink:href="{{{ url }}}"
+              class="contributor-link"
+              target="_blank"
+              rel="nofollow sponsored"
+            >
+              <image
+                x="{{ x }}"
+                y="{{ y }}"
+                width="{{ width }}"
+                height="{{ height }}"
+                xlink:href="{{{ avatar }}}"
+              />
+            </a>
+
+      - name: Create a PR
+        uses: peter-evans/create-pull-request@v3
+        with:
+          commit-message: Update Contributors
+          title: "[automated] Update Contributors File"
+          token: ${{ steps.generate_token.outputs.token }}

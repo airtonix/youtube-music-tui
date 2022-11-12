@@ -1,0 +1,45 @@
+---
+name: Setup Asdf
+
+description: provisions tooling
+
+inputs:
+  SetupCommand:
+    description: "Command to run"
+    required: false
+
+runs:
+  using: "composite"
+
+  steps:
+    - name: Ensure setup command available
+      shell: bash
+      env:
+        SETUP_COMMAND: ${{inputs.SetupCommand}}
+      run: |
+
+    - uses: actions/cache@v3
+      id: asdf-cache
+      with:
+        path: ~/.asdf
+        key: ${{ runner.os }}-asdf-${{ hashFiles('**/.tool-versions') }}
+        restore-keys: |
+          ${{ runner.os }}-asdf-
+
+    - name: asdf install
+      if: steps.asdf-cache.outputs.cache-hit != 'true'
+      shell: bash
+      env:
+        SETUP_COMMAND: ${{inputs.SetupCommand}}
+      run: |
+        if [ -z "${SETUP_COMMAND}" ]; then
+          ${{github.action_path}}/setup.bash
+        else
+          $SETUP_COMMAND
+        fi
+
+    - name: set asdf path
+      shell: bash
+      run: |
+        echo "$HOME/.asdf/bin" >> $GITHUB_PATH
+        echo "$HOME/.asdf/shims" >> $GITHUB_PATH
