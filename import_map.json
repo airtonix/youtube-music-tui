@@ -2,6 +2,7 @@
   "imports": {
     "react": "npm:react@17",
     "ink": "npm:ink",
-    "cli-spinners": "npm:cli-spinners"
+    "cli-spinners": "npm:cli-spinners",
+    "node-youtube-music": "npm:node-youtube-music"
   }
 }
