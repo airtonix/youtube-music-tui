@@ -30,7 +30,7 @@ runs:
                   ${{ runner.os }}-deno-
 
         - name: Install Dependencies
-          if: deno-cache.outputs.cache-hit != 'true'
+          if: steps.deno-cache.outputs.cache-hit != 'true'
           shell: bash
           env:
               HUSKY_SKIP_INSTALL: "1"
