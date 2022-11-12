@@ -39,6 +39,7 @@ jobs:
               with:
                   Entrypoint: ./src/index.ts
                   DenoArgs: --unstable
+                  StrickLockfile: deno.lock
 
             - name: Create Release
               env:

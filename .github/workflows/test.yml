@@ -25,6 +25,7 @@ jobs:
         with:
           Entrypoint: ./src/index.ts
           DenoArgs: --unstable
+          StrickLockfile: deno.lock
 
       - run: just lint
 
