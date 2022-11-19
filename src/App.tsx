@@ -1,32 +1,34 @@
-import React, { useEffect, useState } from "react";
-import { Text } from "ink";
+import React from "react";
 
 import { Layout } from "./components/App/Layout/index.ts";
 import { AuthProvider } from "./services/Auth/index.ts";
 import { ScreenSizeProvider } from "./services/Screen/index.ts";
-import { KeyPressRouter } from "./services/Router/KeyPressRouter.tsx";
+import { Router, Route, KeyPressRouter } from "./services/Router/index.ts";
 import { Header } from "./components/App/Header/Header.tsx";
 import { Footer } from "./components/App/Footer/Footer.tsx";
-import { Debug } from "./components/App/Debug/Debug.tsx";
+import { Overlay, OverlayProvider } from "./components/App/Overlay/index.ts";
+
+import { SplashScreen } from "./components/Splash/SplashScreen/SplashScreen.tsx";
+import { PlaylistScreen } from "./components/Player/PlaylistScreen/PlaylistScreen.tsx";
+import { LoginScreen } from "./components/Auth/LoginScreen/index.ts";
 
 export function App() {
-  const [isLoading, setIsLoading] = useState(true);
-
-  useEffect(() => {
-    if (!isLoading) return;
-    setIsLoading(false);
-  }, [isLoading]);
-
   return (
-    <ScreenSizeProvider>
-      <AuthProvider>
+    <Router>
+      <OverlayProvider>
         <KeyPressRouter>
-          <Layout header={<Header />} footer={<Footer />}>
-            <Text>children</Text>
-            <Debug />
-          </Layout>
+          <ScreenSizeProvider>
+            <AuthProvider>
+              <Layout header={<Header />} footer={<Footer />}>
+                <Overlay id="login" component={LoginScreen} />
+                <Route path="/" component={SplashScreen} />
+                <Route path="/playlist" component={PlaylistScreen} />
+                <Route path="/playlist/:id" component={PlaylistScreen} />
+              </Layout>
+            </AuthProvider>
+          </ScreenSizeProvider>
         </KeyPressRouter>
-      </AuthProvider>
-    </ScreenSizeProvider>
+      </OverlayProvider>
+    </Router>
   );
 }
