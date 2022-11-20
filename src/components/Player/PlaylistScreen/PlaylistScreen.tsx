@@ -3,10 +3,10 @@ import { Box, Text } from "ink";
 
 import { useEffect } from "react";
 
-import { useAuth } from "../../../services/Auth/useAuth.ts";
-import { useRouter } from "../../../services/Router/useRouter.ts";
+import { useAuth } from "../../../services/Auth/useAuth";
+import { useRouter } from "../../../services/Router/useRouter";
 
-import { PlaylistContainer } from "./PlaylistContainer.tsx";
+import { PlaylistContainer } from "./PlaylistContainer";
 
 export function PlaylistScreen() {
   const { isAuthenticated } = useAuth();

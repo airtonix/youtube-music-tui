@@ -1,29 +1,21 @@
-ENTRYPOINT := "./src/index.tsx"
+ENTRYPOINT := "./src/index.ts"
 
 _default:
     @just --list
 
 dev:
-    deno run \
-        --allow-all \
-        --unstable \
+    yarn ncc run \
         {{ENTRYPOINT}}
+
+clean:
+    git clean -xdf
+    just deps
 
 deps:
-    deno cache \
-        --reload \
-        --unstable \
-        {{ENTRYPOINT}}
+    yarn install
+    yarn syncpack
+    yarn ncc cache clean
 
-check:
-    deno check \
-        --unstable \
-        {{ENTRYPOINT}}
-
-    deno fmt --check \
-        --unstable \
-        {{ENTRYPOINT}}
-
-    deno lint \
-        --unstable \
-        {{ENTRYPOINT}}
+types:
+    yarn tsc \
+        --noEmit

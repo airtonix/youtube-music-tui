@@ -1,4 +1,4 @@
-export { Route } from "./Route.tsx";
-export { Router } from "./Router.tsx";
-export { useRouter } from "./useRouter.ts";
-export { KeyPressRouter } from "./KeyPressRouter.tsx";
+export { Route } from "./Route";
+export { Router } from "./Router";
+export { useRouter } from "./useRouter";
+export { KeyPressRouter } from "./KeyPressRouter";

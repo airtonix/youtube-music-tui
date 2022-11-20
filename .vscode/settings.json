@@ -1,6 +1,3 @@
 {
-  "editor.formatOnSave": true,
-  "deno.enable": true,
-  "deno.unstable": true,
-  "deno.importMap": "./import_map.json"
+  "editor.formatOnSave": true
 }

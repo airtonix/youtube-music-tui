@@ -1,12 +1,9 @@
 import React from "react";
-import type {
-  ContextType,
-  FunctionComponent,
-} from "https://esm.sh/react@17.0.2";
+import type { ContextType, FunctionComponent } from "react";
 
-import { useOverlay } from "./useOverlay.ts";
+import { useOverlay } from "./useOverlay";
 
-import { OverlayContext } from "./OverlayContext.ts";
+import { OverlayContext } from "./OverlayContext";
 
 type ValidOverlayId = keyof NonNullable<
   ContextType<typeof OverlayContext>

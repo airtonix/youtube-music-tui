@@ -1,7 +1,7 @@
 import React, { useState } from "react";
-import type { PropsWithChildren } from "https://esm.sh/react@17.0.2";
+import type { PropsWithChildren } from "react";
 
-import { AuthContext } from "./AuthContext.ts";
+import { AuthContext } from "./AuthContext";
 
 type AuthProviderProps = PropsWithChildren<{}>;
 

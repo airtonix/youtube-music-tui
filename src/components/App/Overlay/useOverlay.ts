@@ -1,6 +1,6 @@
-import { useContext } from "https://esm.sh/react@17.0.2";
+import { useContext } from "react";
 
-import { OverlayContext } from "./OverlayContext.ts";
+import { OverlayContext } from "./OverlayContext";
 
 export function useOverlay() {
   const context = useContext(OverlayContext);

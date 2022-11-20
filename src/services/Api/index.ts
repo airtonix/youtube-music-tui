@@ -1,1 +1,1 @@
-export { useGetPlaylistsQuery } from "./useGetPlaylistsQuery.ts";
+export { useGetPlaylistsQuery } from "./useGetPlaylistsQuery";

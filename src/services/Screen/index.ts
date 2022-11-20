@@ -1,2 +1,2 @@
-export { ScreenSizeProvider } from "./ScreenSizeProvider.tsx";
-export { useScreenSize } from "./useScreenSize.ts";
+export { ScreenSizeProvider } from "./ScreenSizeProvider";
+export { useScreenSize } from "./useScreenSize";

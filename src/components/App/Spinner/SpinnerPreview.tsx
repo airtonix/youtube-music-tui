@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { Box, Text, useInput } from "ink";
 import { default as spinners } from "cli-spinners";
 import type { SpinnerName } from "cli-spinners";
-import { Spinner } from "./Spinner.tsx";
+import { Spinner } from "./Spinner";
 
 const SpinnerNames = Object.keys(spinners) as SpinnerName[];
 

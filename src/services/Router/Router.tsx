@@ -1,13 +1,14 @@
-import React, { useCallback } from "react";
-import type { PropsWithChildren } from "https://esm.sh/react@17.0.2";
+import React, { useCallback, useState } from "react";
+import type { PropsWithChildren } from "react";
 import urlcat from "urlcat";
 
-import type { Route, RouteParams } from "./types.ts";
-import { useHistory } from "./useHistory.ts";
-import { RouterContext } from "./RouterContext.ts";
+import type { Route, RouteParams } from "./types";
+import { useHistory } from "./useHistory";
+import { RouterContext } from "./RouterContext";
+import type { RoutePath } from "./RouterContext";
 
 type RouterProps = PropsWithChildren<{}>;
-export const Router = ({ children }: RouterProps) => {
+export function Router({ children }: RouterProps) {
   const { state, set } = useHistory<Route>({ path: "/" });
 
   const matches = useCallback(
@@ -22,9 +23,9 @@ export const Router = ({ children }: RouterProps) => {
   );
 
   const goto = useCallback(
-    (path: string, params?: RouteParams) => {
+    (path: RoutePath, params?: RouteParams) => {
       const target = urlcat(path, params ?? {});
-      set({ path: target, params });
+      set({ path: target, params: params || {} });
     },
     [state]
   );
@@ -40,4 +41,4 @@ export const Router = ({ children }: RouterProps) => {
       {children}
     </RouterContext.Provider>
   );
-};
+}

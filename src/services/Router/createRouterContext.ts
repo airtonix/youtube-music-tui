@@ -1,5 +1,5 @@
-import { createContext } from "https://esm.sh/react@17.0.2";
-import { Route, RouteParams } from "./types.ts";
+import { createContext } from "react";
+import { Route, RouteParams } from "./types";
 
 export function createRouterContext<T extends Route>(_routes: readonly T[]) {
   return createContext<{

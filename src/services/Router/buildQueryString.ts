@@ -1,4 +1,4 @@
-import type { RouteParams } from "./types.ts";
+import type { RouteParams } from "./types";
 
 export function buildQueryString(params: RouteParams) {
   return Object.entries(params)

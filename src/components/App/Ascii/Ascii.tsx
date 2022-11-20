@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 import figlet from "figlet";
 import { Text } from "ink";
 
@@ -13,17 +13,8 @@ type AsciiProps = {
 export function Ascii({
   font = "Slant Relief",
   theme = "Monokai Dimmed",
-  horizontalLayout = "default",
-  verticalLayout = "default",
   text = "",
+  ...props
 }: AsciiProps) {
-  return (
-    <Text>
-      {figlet.textSync(text, {
-        font,
-        horizontalLayout,
-        verticalLayout,
-      })}
-    </Text>
-  );
+  return <Text>{figlet.textSync(text, props)}</Text>;
 }

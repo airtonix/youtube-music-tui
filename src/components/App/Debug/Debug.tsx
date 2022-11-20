@@ -1,6 +1,6 @@
 import React from "react";
 import { Box, Text } from "ink";
-import { useScreenSize } from "../../../services/Screen/index.ts";
+import { useScreenSize } from "../../../services/Screen";
 
 export function Debug() {
   const { width, height } = useScreenSize();

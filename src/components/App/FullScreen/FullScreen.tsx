@@ -2,7 +2,7 @@ import React from "react";
 import type { PropsWithChildren } from "react";
 import { Box, Text } from "ink";
 import type { BoxProps } from "ink";
-import { useScreenSize } from "../../../services/Screen/index.ts";
+import { useScreenSize } from "../../../services/Screen";
 
 type FullScreenProps = PropsWithChildren<BoxProps>;
 

@@ -1,6 +1,6 @@
 import React from "react";
 import { Box, Text } from "ink";
-import { LoginForm } from "./LoginForm.tsx";
+import { LoginForm } from "./LoginForm";
 
 export function LoginScreen() {
   return (

@@ -1,12 +1,8 @@
 import React from "react";
-import type {
-  ContextType,
-  FunctionComponent,
-  PropsWithChildren,
-} from "https://esm.sh/react@17.0.2";
+import type { ContextType, FunctionComponent, PropsWithChildren } from "react";
 
-import { useRouter } from "./useRouter.ts";
-import { RouterContext } from "./RouterContext.ts";
+import { useRouter } from "./useRouter";
+import { RouterContext } from "./RouterContext";
 
 type RouteProps = PropsWithChildren<{
   path: Parameters<ContextType<typeof RouterContext>["goto"]>[0];

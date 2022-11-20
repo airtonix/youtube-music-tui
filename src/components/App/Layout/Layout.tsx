@@ -1,7 +1,7 @@
 import React from "react";
 import type { ReactNode, PropsWithChildren } from "react";
 
-import { useScreenSize } from "../../../services/Screen/useScreenSize.ts";
+import { useScreenSize } from "../../../services/Screen/useScreenSize";
 import { Box } from "ink";
 
 type LayoutProps = PropsWithChildren<{

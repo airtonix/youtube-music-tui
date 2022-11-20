@@ -1,2 +1,2 @@
-export { LoginScreen } from "./LoginScreen.tsx";
-export { LoginForm } from "./LoginForm.tsx";
+export { LoginScreen } from "./LoginScreen";
+export { LoginForm } from "./LoginForm";

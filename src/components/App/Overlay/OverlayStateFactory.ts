@@ -1,5 +1,4 @@
-import { stateProxy } from "react-state-proxy";
-import type { OverlayContextShape, OverlayMap } from "./types.ts";
+import type { OverlayContextShape, OverlayMap } from "./types";
 
 export function createOverlayState<T extends string>(...overlayNames: T[]) {
   const overlays: OverlayContextShape<T> = {
@@ -20,5 +19,5 @@ export function createOverlayState<T extends string>(...overlayNames: T[]) {
       this.overlays[name] = false;
     },
   };
-  return stateProxy(overlays);
+  return overlays;
 }

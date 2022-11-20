@@ -1,1 +1,1 @@
-export { Spinner } from "./Spinner.tsx";
+export { Spinner } from "./Spinner";

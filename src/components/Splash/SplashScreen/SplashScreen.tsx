@@ -1,17 +1,19 @@
 import React, { useCallback } from "react";
-import type { ComponentProps } from "https://esm.sh/react@17.0.2";
+import type { ComponentProps } from "react";
 import Gradient from "ink-gradient";
 import { useInput } from "ink";
 
-import { useRouter } from "../../../services/Router/useRouter.ts";
-import { FullScreen } from "../../App/FullScreen/FullScreen.tsx";
-import { Ascii } from "../../App/Ascii/Ascii.tsx";
-import { useAuth } from "../../../services/Auth/useAuth.ts";
+import { useRouter } from "../../../services/Router/useRouter";
+import { FullScreen } from "../../App/FullScreen/FullScreen";
+import { Ascii } from "../../App/Ascii/Ascii";
+import { useAuth } from "../../../services/Auth/useAuth";
+import { useOverlay } from "../../App/Overlay/useOverlay";
 
 type Colors = NonNullable<ComponentProps<typeof Gradient>["name"]>;
 
 export function SplashScreen() {
   const { goto } = useRouter();
+  const { open } = useOverlay();
   const { isAuthenticated } = useAuth();
 
   useInput((_, key) => {

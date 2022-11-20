@@ -1,8 +1,8 @@
 import React from "react";
-import type { PropsWithChildren } from "https://esm.sh/react@17.0.2";
+import type { PropsWithChildren } from "react";
 
-import { OverlayContext } from "./OverlayContext.ts";
-import { createOverlayState } from "./OverlayStateFactory.ts";
+import { OverlayContext } from "./OverlayContext";
+import { createOverlayState } from "./OverlayStateFactory";
 
 export function OverlayProvider({ children }: PropsWithChildren<{}>) {
   const overlayState = createOverlayState();

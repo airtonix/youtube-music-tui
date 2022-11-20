@@ -1,6 +1,6 @@
-import { createContext } from "https://esm.sh/react@17.0.2";
-import { createOverlayState } from "./OverlayStateFactory.ts";
-import { OverlayContextShape } from "./types.ts";
+import { createContext } from "react";
+import { OverlayContextShape } from "./types";
+import { createOverlayState } from "./OverlayStateFactory";
 
 const overlays = ["login"] as const;
 export const OverlayContext = createContext<

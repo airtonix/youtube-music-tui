@@ -1,4 +1,5 @@
-import { createRouterContext } from "./createRouterContext.ts";
+import { ContextType } from "react";
+import { createRouterContext } from "./createRouterContext";
 
 export const RouterContext = createRouterContext([
   { path: "/" },
@@ -15,3 +16,6 @@ export const RouterContext = createRouterContext([
   { path: "/artist/:name/album/:name/track/:track" },
   { path: "/settings" },
 ] as const);
+export type RoutePath = Parameters<
+  ContextType<typeof RouterContext>["goto"]
+>[0];

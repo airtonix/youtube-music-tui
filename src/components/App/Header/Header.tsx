@@ -1,6 +1,6 @@
 import React from "react";
 import { Box, Text } from "ink";
-import { useAuth } from "../../../services/Auth/useAuth.ts";
+import { useAuth } from "../../../services/Auth/useAuth";
 
 export function Header() {
   const { isAuthenticated } = useAuth();

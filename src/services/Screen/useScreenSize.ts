@@ -1,6 +1,6 @@
 import { useContext } from "react";
 import type { ContextType } from "react";
-import { ScreenSizeContext } from "./ScreenSizeContext.ts";
+import { ScreenSizeContext } from "./ScreenSizeContext";
 
 export function useScreenSize(): ContextType<typeof ScreenSizeContext> {
   const context = useContext(ScreenSizeContext);

@@ -1,3 +1,3 @@
-export { Overlay } from "./Overlay.tsx";
-export { OverlayProvider } from "./OverlayProvider.tsx";
-export { useOverlay } from "./useOverlay.ts";
+export { Overlay } from "./Overlay";
+export { OverlayProvider } from "./OverlayProvider";
+export { useOverlay } from "./useOverlay";
