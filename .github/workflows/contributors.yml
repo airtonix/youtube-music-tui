@@ -11,7 +11,7 @@ jobs:
   contributors:
     runs-on: ubuntu-latest
     steps:
-      - uses: wow-actions/use-app-token@v1
+      - uses: wow-actions/use-app-token@v2
         id: generate_token
         with:
           app_id: ${{ secrets.ACTIONBOT_APPID }}
